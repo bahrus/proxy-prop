@@ -1,0 +1,25 @@
+{
+  "name": "proxy-prop",
+  "version": "0.0.0",
+  "description": "Web component that passes from a higher component down",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "xtal-element": "0.0.383"
+  },
+  "devDependencies": {
+    "xtal-test": "0.0.50"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahrus/proxy-prop.git"
+  },
+  "author": "anderson.bruce.b@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahrus/proxy-prop/issues"
+  },
+  "homepage": "https://github.com/bahrus/proxy-prop#readme"
+}
