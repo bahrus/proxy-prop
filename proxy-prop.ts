@@ -1,6 +1,11 @@
 import {xc, PropAction, PropDef, PropDefMap, ReactiveSurface, IReactor} from 'xtal-element/lib/XtalCore.js';
 import {structuralClone} from 'xtal-element/lib/structuralClone.js';
 import {passVal} from 'on-to-me/on-to-me.js';
+import  'mut-obs/mut-obs.js';
+import {MutObs} from 'mut-obs/mut-obs.js';
+
+const p_p_std = 'p_p_std';
+const attachedParents = new WeakSet<Element>();
 /**
  * @element proxy-prop
  */
@@ -40,6 +45,26 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface{
     connectedCallback(){
         this.style.display = 'none';
         xc.hydrate(this, slicedPropDefs);
+        const parent = this.parentElement;
+        if(parent !== null){
+            if(!attachedParents.has(parent)){
+                attachedParents.add(parent);
+                const mutObs = document.createElement('mut-obs') as MutObs;
+                const s = mutObs.setAttribute.bind(mutObs);
+                s('bubbles', '');
+                s('dispatch', p_p_std);
+                s('child-list', '');
+                s('observe', 'parentElement');
+                s('on', '*');
+                parent.appendChild(mutObs);
+            }
+            parent.addEventListener(p_p_std, e => {
+                e.stopPropagation();
+                if(this.lastVal !== undefined){
+                    passVal(this.lastVal, this, this.echoTo, this.careOf, this.m, this.from, this.prop, this.as);
+                }
+            })
+        }        
     }
     disconnectedCallback(){
         //if(this.hostToObserve !== undefined)
