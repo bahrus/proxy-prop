@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "mut-obs": "0.0.5",
-    "on-to-me": "0.0.19",
-    "xtal-element": "0.0.383"
+    "mut-obs": "0.0.6",
+    "on-to-me": "0.0.20",
+    "xtal-element": "0.0.384"
   },
   "devDependencies": {
     "xtal-test": "0.0.50"

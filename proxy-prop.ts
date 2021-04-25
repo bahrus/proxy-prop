@@ -1,6 +1,6 @@
 import {xc, PropAction, PropDef, PropDefMap, ReactiveSurface, IReactor} from 'xtal-element/lib/XtalCore.js';
 import {structuralClone} from 'xtal-element/lib/structuralClone.js';
-import {passVal} from 'on-to-me/on-to-me.js';
+import {passVal, passValToMatches} from 'on-to-me/on-to-me.js';
 import  'mut-obs/mut-obs.js';
 import {MutObs} from 'mut-obs/mut-obs.js';
 
@@ -21,7 +21,7 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface{
 
     observeProp: string | undefined;
 
-    echoTo: string | undefined;
+    to: string | undefined;
 
     from: string | undefined;
 
@@ -60,8 +60,15 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface{
             }
             parent.addEventListener(p_p_std, e => {
                 e.stopPropagation();
+                
                 if(this.lastVal !== undefined){
-                    passVal(this.lastVal, this, this.echoTo, this.careOf, this.m, this.from, this.prop, this.as);
+                    const ae = e as any;
+                    if(this.to !== undefined && ae.detail.match.matches(this.to)){
+                        passValToMatches([ae.detail.match], this.lastVal, this.to, this.careOf, this.prop, this.as);
+                    }else{
+                        passVal(this.lastVal, this, this.to, this.careOf, this.m, this.from, this.prop, this.as);
+                    }
+                    
                 }
             })
         }        
@@ -100,7 +107,7 @@ const onHostToObserve = ({hostToObserve, observeProp, self}: P) => {
     self.subscribe();
 };
 
-const onLastVal = ({lastVal, echoTo, careOf, from, prop, as,  self}: P) => {
+const onLastVal = ({lastVal, to: echoTo, careOf, from, prop, as,  self}: P) => {
     passVal(lastVal, self, echoTo, careOf, self.m, from, prop, as);
 };
 
@@ -142,7 +149,7 @@ const numProp1: PropDef = {
 };
 const propDefMap: PropDefMap<P> = {
     fromRootNodeHost: boolProp2,
-    echoTo: strProp1,
+    to: strProp1,
     careOf: strProp1,
     from: strProp1,
     prop: strProp1,
@@ -157,3 +164,20 @@ const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(ProxyProp, slicedPropDefs, 'onPropChange');
 
 xc.define(ProxyProp);
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'proxy-prop': ProxyProp;
+    }
+}
+
+class PP extends ProxyProp{
+    static is = 'p-p';
+}
+xc.define(PP);
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'p-p': PP;
+    }
+}

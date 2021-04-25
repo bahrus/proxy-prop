@@ -10,7 +10,7 @@ Use case I:
 ...
 <laissez-dom>
     <template>
-        <proxy-prop from-root-node-host observe-prop=items echo-to=[-list] ></proxy-prop>
+        <proxy-prop from-root-node-host observe-prop=items to=[-list] ></proxy-prop>
         <i-bid -list></i-bid>
     </template>
 </laissez-dom>

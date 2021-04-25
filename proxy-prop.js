@@ -1,6 +1,6 @@
 import { xc } from 'xtal-element/lib/XtalCore.js';
 import { structuralClone } from 'xtal-element/lib/structuralClone.js';
-import { passVal } from 'on-to-me/on-to-me.js';
+import { passVal, passValToMatches } from 'on-to-me/on-to-me.js';
 import 'mut-obs/mut-obs.js';
 const p_p_std = 'p_p_std';
 const attachedParents = new WeakSet();
@@ -39,7 +39,13 @@ export class ProxyProp extends HTMLElement {
             parent.addEventListener(p_p_std, e => {
                 e.stopPropagation();
                 if (this.lastVal !== undefined) {
-                    passVal(this.lastVal, this, this.echoTo, this.careOf, this.m, this.from, this.prop, this.as);
+                    const ae = e;
+                    if (this.to !== undefined && ae.detail.match.matches(this.to)) {
+                        passValToMatches([ae.detail.match], this.lastVal, this.to, this.careOf, this.prop, this.as);
+                    }
+                    else {
+                        passVal(this.lastVal, this, this.to, this.careOf, this.m, this.from, this.prop, this.as);
+                    }
                 }
             });
         }
@@ -74,7 +80,7 @@ const onHostToObserve = ({ hostToObserve, observeProp, self }) => {
     setVal(self, currentVal);
     self.subscribe();
 };
-const onLastVal = ({ lastVal, echoTo, careOf, from, prop, as, self }) => {
+const onLastVal = ({ lastVal, to: echoTo, careOf, from, prop, as, self }) => {
     passVal(lastVal, self, echoTo, careOf, self.m, from, prop, as);
 };
 const propActions = [
@@ -114,7 +120,7 @@ const numProp1 = {
 };
 const propDefMap = {
     fromRootNodeHost: boolProp2,
-    echoTo: strProp1,
+    to: strProp1,
     careOf: strProp1,
     from: strProp1,
     prop: strProp1,
@@ -127,3 +133,7 @@ const propDefMap = {
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(ProxyProp, slicedPropDefs, 'onPropChange');
 xc.define(ProxyProp);
+class PP extends ProxyProp {
+}
+PP.is = 'p-p';
+xc.define(PP);
