@@ -1,10 +1,25 @@
 {
   "name": "proxy-prop",
   "version": "0.0.7",
+  "keywords": [
+    "Web Components",
+    "Custom Elements"
+  ],
   "description": "Web component that passes from a higher component down",
-  "main": "index.js",
+  "main": "proxy-prop.js",
+  "module": "proxy-prop.js",
+  "exports": {
+    ".": "./proxy-prop.js",
+    "./proxy-prop.js": "./proxy-prop.js"
+  },
+  "files": [
+    "proxy-*.*",
+    "types.d.js"
+  ],
+  "types": "types.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "package-check": "package-check",
     "publish": "git commit -m \"...\" && git push && npm version patch && npm publish && git push"
   },
   "dependencies": {
@@ -13,6 +28,7 @@
     "xtal-element": "0.0.389"
   },
   "devDependencies": {
+    "@skypack/package-check": "0.2.2",
     "xtal-test": "0.0.50"
   },
   "repository": {

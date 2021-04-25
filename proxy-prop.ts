@@ -3,13 +3,14 @@ import {structuralClone} from 'xtal-element/lib/structuralClone.js';
 import {passVal, passValToMatches} from 'on-to-me/on-to-me.js';
 import  'mut-obs/mut-obs.js';
 import {MutObs} from 'mut-obs/mut-obs.js';
+import {IProxyPropProps} from './types.d.js';
 
 const p_p_std = 'p_p_std';
 const attachedParents = new WeakSet<Element>();
 /**
  * @element proxy-prop
  */
-export class ProxyProp extends HTMLElement implements ReactiveSurface{
+export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPropProps{
     static is = 'proxy-prop';
     propActions = propActions;
     self =  this;
