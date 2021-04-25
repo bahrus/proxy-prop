@@ -10,7 +10,7 @@
   "dependencies": {
     "mut-obs": "0.0.6",
     "on-to-me": "0.0.20",
-    "xtal-element": "0.0.386"
+    "xtal-element": "0.0.389"
   },
   "devDependencies": {
     "xtal-test": "0.0.50"
