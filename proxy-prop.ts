@@ -63,7 +63,7 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface{
                 
                 if(this.lastVal !== undefined){
                     const ae = e as any;
-                    if(this.to !== undefined && ae.detail.match.matches(this.to)){
+                    if(this.from === undefined && this.to !== undefined && ae.detail.match.matches(this.to)){
                         passValToMatches([ae.detail.match], this.lastVal, this.to, this.careOf, this.prop, this.as);
                     }else{
                         passVal(this.lastVal, this, this.to, this.careOf, this.m, this.from, this.prop, this.as);

@@ -40,7 +40,7 @@ export class ProxyProp extends HTMLElement {
                 e.stopPropagation();
                 if (this.lastVal !== undefined) {
                     const ae = e;
-                    if (this.to !== undefined && ae.detail.match.matches(this.to)) {
+                    if (this.from === undefined && this.to !== undefined && ae.detail.match.matches(this.to)) {
                         passValToMatches([ae.detail.match], this.lastVal, this.to, this.careOf, this.prop, this.as);
                     }
                     else {
