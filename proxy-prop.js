@@ -114,6 +114,10 @@ const objProp2 = {
     ...objProp1,
     stopReactionsIfFalsy: true,
 };
+const objProp3 = {
+    async: true,
+    type: Object,
+};
 const numProp1 = {
     ...baseProp,
     type: Number,
@@ -125,7 +129,7 @@ const propDefMap = {
     from: strProp1,
     prop: strProp1,
     as: strProp1,
-    lastVal: objProp2,
+    lastVal: objProp3,
     observeProp: strProp2,
     hostToObserve: objProp2,
     m: numProp1,
