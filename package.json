@@ -4,12 +4,13 @@
   "description": "Web component that passes from a higher component down",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "git commit -m \"...\" && git push && npm version patch && npm publish && git push"
   },
   "dependencies": {
     "mut-obs": "0.0.6",
     "on-to-me": "0.0.20",
-    "xtal-element": "0.0.385"
+    "xtal-element": "0.0.386"
   },
   "devDependencies": {
     "xtal-test": "0.0.50"
