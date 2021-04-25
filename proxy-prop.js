@@ -125,5 +125,5 @@ const propDefMap = {
     m: numProp1,
 };
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
-xc.letThereBeProps(ProxyProp, slicedPropDefs);
+xc.letThereBeProps(ProxyProp, slicedPropDefs, 'onPropChange');
 xc.define(ProxyProp);
