@@ -1,6 +1,6 @@
 {
   "name": "proxy-prop",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Web component that passes from a higher component down",
   "main": "index.js",
   "scripts": {
