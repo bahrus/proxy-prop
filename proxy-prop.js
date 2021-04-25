@@ -2,6 +2,7 @@ import { xc } from 'xtal-element/lib/XtalCore.js';
 import { structuralClone } from 'xtal-element/lib/structuralClone.js';
 import { passVal, passValToMatches } from 'on-to-me/on-to-me.js';
 import 'mut-obs/mut-obs.js';
+import { MutObs } from 'mut-obs/mut-obs.js';
 const p_p_std = 'p_p_std';
 const attachedParents = new WeakSet();
 /**
@@ -51,6 +52,7 @@ export class ProxyProp extends HTMLElement {
         }
     }
     disconnectedCallback() {
+        const m = MutObs.toString;
         //if(this.hostToObserve !== undefined)
         //TODO unsubscribe
     }

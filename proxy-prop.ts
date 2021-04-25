@@ -75,6 +75,7 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPro
         }        
     }
     disconnectedCallback(){
+        const m = MutObs.toString;
         //if(this.hostToObserve !== undefined)
         //TODO unsubscribe
     }

@@ -23,7 +23,7 @@
     "publish": "git commit -m \"...\" && git push && npm version patch && npm publish && git push"
   },
   "dependencies": {
-    "mut-obs": "0.0.6",
+    "mut-obs": "0.0.7",
     "on-to-me": "0.0.20",
     "xtal-element": "0.0.389"
   },
