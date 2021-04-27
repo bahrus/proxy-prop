@@ -25,7 +25,7 @@
   "dependencies": {
     "mut-obs": "0.0.7",
     "on-to-me": "0.0.20",
-    "pass-down": "0.0.30",
+    "pass-down": "0.0.31",
     "xtal-element": "0.0.389"
   },
   "devDependencies": {
