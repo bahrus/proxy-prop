@@ -1,10 +1,11 @@
 import { xc } from 'xtal-element/lib/XtalCore.js';
 import { structuralClone } from 'xtal-element/lib/structuralClone.js';
-import { passVal, passValToMatches } from 'on-to-me/on-to-me.js';
+import { passVal } from 'on-to-me/on-to-me.js';
+import { addDefaultMutObs } from 'pass-down/p.js';
 import 'mut-obs/mut-obs.js';
 import { MutObs } from 'mut-obs/mut-obs.js';
 const p_p_std = 'p_p_std';
-const attachedParents = new WeakSet();
+//const attachedParents = new WeakSet<Element>();
 /**
  * @element proxy-prop
  */
@@ -24,32 +25,7 @@ export class ProxyProp extends HTMLElement {
     connectedCallback() {
         this.style.display = 'none';
         xc.hydrate(this, slicedPropDefs);
-        const parent = this.parentElement;
-        if (parent !== null) {
-            if (!attachedParents.has(parent)) {
-                attachedParents.add(parent);
-                const mutObs = document.createElement('mut-obs');
-                const s = mutObs.setAttribute.bind(mutObs);
-                s('bubbles', '');
-                s('dispatch', p_p_std);
-                s('child-list', '');
-                s('observe', 'parentElement');
-                s('on', '*');
-                parent.appendChild(mutObs);
-            }
-            parent.addEventListener(p_p_std, e => {
-                e.stopPropagation();
-                if (this.lastVal !== undefined) {
-                    const ae = e;
-                    if (this.from === undefined && this.to !== undefined && ae.detail.match.matches(this.to)) {
-                        passValToMatches([ae.detail.match], this.lastVal, this.to, this.careOf, this.prop, this.as);
-                    }
-                    else {
-                        passVal(this.lastVal, this, this.to, this.careOf, this.m, this.from, this.prop, this.as);
-                    }
-                }
-            });
-        }
+        addDefaultMutObs(this);
     }
     disconnectedCallback() {
         const m = MutObs.toString;
