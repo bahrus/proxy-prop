@@ -1,11 +1,9 @@
 import { xc } from 'xtal-element/lib/XtalCore.js';
 import { structuralClone } from 'xtal-element/lib/structuralClone.js';
 import { passVal } from 'on-to-me/on-to-me.js';
-import { addDefaultMutObs } from 'pass-down/p.js';
+import { addDefaultMutObs } from 'pass-down/pdUtils.js';
 import 'mut-obs/mut-obs.js';
 import { MutObs } from 'mut-obs/mut-obs.js';
-const p_p_std = 'p_p_std';
-//const attachedParents = new WeakSet<Element>();
 /**
  * @element proxy-prop
  */
@@ -96,6 +94,11 @@ const objProp3 = {
     async: true,
     type: Object,
 };
+const objProp4 = {
+    ...objProp3,
+    stopReactionsIfFalsy: true,
+    parse: true,
+};
 const numProp1 = {
     ...baseProp,
     type: Number,
@@ -110,7 +113,10 @@ const propDefMap = {
     lastVal: objProp3,
     observeProp: strProp2,
     hostToObserve: objProp2,
+    mutateEvents: objProp4,
     m: numProp1,
+    log: boolProp1,
+    debug: boolProp1,
 };
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(ProxyProp, slicedPropDefs, 'onPropChange');

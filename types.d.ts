@@ -3,5 +3,4 @@ export interface IProxyPropProps extends PDToFrom {
     fromRootNodeHost?: boolean,
     observeProp?: string,
     hostToObserve?: Element,
-    m?: number,
 }
