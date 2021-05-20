@@ -1,6 +1,6 @@
 import {PDToFrom} from 'pass-down/types.js';
 export interface IProxyPropProps extends PDToFrom {
-    fromRootNodeHost?: boolean,
+    fromHost?: boolean,
     observeProp?: string,
     hostToObserve?: Element,
 }

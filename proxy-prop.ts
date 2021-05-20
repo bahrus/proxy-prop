@@ -16,7 +16,7 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPro
     self =  this;
     reactor: IReactor = new xc.Rx(this);
 
-    fromRootNodeHost: boolean | undefined;
+    fromHost: boolean | undefined;
 
     hostToObserve: Element | undefined;
 
@@ -51,7 +51,7 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPro
 
     connectedCallback(){
         this.style.display = 'none';
-        xc.hydrate(this, slicedPropDefs);
+        xc.mergeProps(this, slicedPropDefs);
         addDefaultMutObs(this);
     }
     disconnectedCallback(){
@@ -66,7 +66,7 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPro
 
 type P = ProxyProp;
 
-const onFromRootNodeHost = ({fromRootNodeHost, self}: P) => {
+const onFromRootNodeHost = ({fromHost: fromRootNodeHost, self}: P) => {
     const rn = self.getRootNode();
     if(rn !== undefined){
         self.hostToObserve = (<any>rn).host as HTMLElement;
@@ -139,7 +139,7 @@ const numProp1: PropDef = {
     type: Number,
 };
 const propDefMap: PropDefMap<P> = {
-    fromRootNodeHost: boolProp2,
+    fromHost: boolProp2,
     to: strProp1,
     careOf: strProp1,
     from: strProp1,

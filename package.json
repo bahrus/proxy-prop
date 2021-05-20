@@ -24,9 +24,9 @@
   },
   "dependencies": {
     "mut-obs": "0.0.7",
-    "on-to-me": "0.0.20",
-    "pass-down": "0.0.31",
-    "xtal-element": "0.0.389"
+    "on-to-me": "0.0.23",
+    "pass-down": "0.0.33",
+    "xtal-element": "0.0.400"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",

@@ -35,7 +35,7 @@ export class ProxyProp extends HTMLElement {
     }
 }
 ProxyProp.is = 'proxy-prop';
-const onFromRootNodeHost = ({ fromRootNodeHost, self }) => {
+const onFromRootNodeHost = ({ fromHost: fromRootNodeHost, self }) => {
     const rn = self.getRootNode();
     if (rn !== undefined) {
         self.hostToObserve = rn.host;
@@ -104,7 +104,7 @@ const numProp1 = {
     type: Number,
 };
 const propDefMap = {
-    fromRootNodeHost: boolProp2,
+    fromHost: boolProp2,
     to: strProp1,
     careOf: strProp1,
     from: strProp1,
