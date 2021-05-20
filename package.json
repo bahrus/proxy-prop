@@ -20,7 +20,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "package-check": "package-check",
-    "publish": "git commit -m \"...\" && git push && npm version patch && npm publish && git push"
+    "pub": "git commit -m \"...\" && git push && npm version patch && npm publish && git push"
   },
   "dependencies": {
     "mut-obs": "0.0.7",
