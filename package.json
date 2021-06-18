@@ -14,23 +14,27 @@
   },
   "files": [
     "proxy-*.*",
-    "types.d.js"
+    "types.d.ts",
+    "custom-elements.json"
   ],
   "types": "types.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "package-check": "package-check",
-    "pub": "git commit -m \"...\" && git push && npm version patch && npm publish && git push"
+    "pub": "git commit -m \"...\" && git push && npm version patch && npm publish && git push",
+    "doc": "custom-elements-manifest analyze",
+    "@custom-elements-manifest/analyzer": "0.2.1"
   },
   "dependencies": {
     "mut-obs": "0.0.8",
     "on-to-me": "0.0.23",
-    "pass-down": "0.0.34",
+    "pass-down": "0.0.35",
     "xtal-element": "0.0.400"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
-    "xtal-test": "0.0.50"
+    "xtal-test": "0.0.51",
+    "@custom-elements-manifest/analyzer": "0.2.1"
   },
   "repository": {
     "type": "git",
@@ -41,5 +45,6 @@
   "bugs": {
     "url": "https://github.com/bahrus/proxy-prop/issues"
   },
-  "homepage": "https://github.com/bahrus/proxy-prop#readme"
+  "homepage": "https://github.com/bahrus/proxy-prop#readme",
+  "customElements": "custom-elements.json"
 }

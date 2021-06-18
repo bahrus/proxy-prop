@@ -6,17 +6,18 @@ Web component that passes a prop from higher component down
 Use case I:
 
 ```html
-
-...
-<laissez-dom>
-    <template>
-        <proxy-prop from-root-node-host observe-prop=items to=[-list] ></proxy-prop>
-        <i-bid -list></i-bid>
-    </template>
-</laissez-dom>
+<my-custom-element>
+    #shadowDOM
+        <laissez-dom>
+            <template>
+                <proxy-prop from-root-node-host observe-prop=items to=[-list] ></proxy-prop>
+                <i-bid -list></i-bid>
+            </template>
+        </laissez-dom>
+</my-custom-element>
 ```
 
-attributes:
+## Supported attributes:
 
 from-root-node-host
 from-closest
