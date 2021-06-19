@@ -4,7 +4,9 @@
 
 <img src="https://badgen.net/bundlephobia/minzip/proxy-prop">
 
-proxy-prop is a web component that passes a prop from a higher component to downstream siblings.  It shares much common code and syntax with other components of the [p-et-alia](https://github.com/bahrus/p-et-alia) framework of components, but, like the other components in that framework proxy-prop can serve a useful purpose as a standalone component.  However, proxy-prop has a significant limitation, described below.
+proxy-prop is a web component that passes a prop from a higher component to downstream siblings.  It shares much common code and syntax with other components of the [p-et-alia](https://github.com/bahrus/p-et-alia) framework of components, but, like the other components in that framework, proxy-prop can serve a useful purpose as a standalone component.  
+
+However, proxy-prop has a significant limitation, described below.
 
 One of the most boring boilerplate tasks for markup-centric web components (which may see a resurgence with HTML Modules) is passing public properties of the web component down to sub components within its Shadow DOM realm (possibly with some minor modifications).  And boilerplate JS is expensive, both in terms of performance, and incurs higher risk maintenance costs.  In other words, proxy-prop places a premium on declarative binding, over boilerplate JS.
 
@@ -22,7 +24,18 @@ proxy-prop is thus currently tightly coupled with custom elements that follow th
 hostToObserve.reactor.subscribe(propsToObserve: Set<string>, callback: (reactor: any) => void));
 ```
 
-**NB:**  This component appears to somewhat buck recent trends in thought as it relates to best practice flow of data.  
+To work with another web component library, which lacks this signature (i.e. all the rest), you will need to extend proxy-prop, andoverride the method subscribe:
+
+```TypeScript
+subscribe(){
+    (<ReactiveSurface>this.hostToObserve!).reactor!.subscribe(new Set([this.observeProp!]), rs => {
+        const currentVal = (<any>this.hostToObserve!)[this.observeProp!];
+        setVal(this, currentVal);
+    });
+}
+```
+
+**NB:**  This component appears to somewhat buck recent trends in thought as it relates to best practice flow of data (maybe?  I'm not really sure).  
 
 ## Syntax
 
