@@ -66,7 +66,7 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPro
 
 type P = ProxyProp;
 
-const onFromRootNodeHost = ({fromHost: fromRootNodeHost, self}: P) => {
+const onFromRootNodeHost = ({fromHost, self}: P) => {
     const rn = self.getRootNode();
     if(rn !== undefined){
         self.hostToObserve = (<any>rn).host as HTMLElement;

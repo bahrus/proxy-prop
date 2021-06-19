@@ -8,12 +8,23 @@ import { MutObs } from 'mut-obs/mut-obs.js';
  * @element proxy-prop
  */
 export class ProxyProp extends HTMLElement {
-    constructor() {
-        super(...arguments);
-        this.propActions = propActions;
-        this.self = this;
-        this.reactor = new xc.Rx(this);
-    }
+    static is = 'proxy-prop';
+    propActions = propActions;
+    self = this;
+    reactor = new xc.Rx(this);
+    fromHost;
+    hostToObserve;
+    observeProp;
+    to;
+    from;
+    careOf;
+    prop;
+    m;
+    debug;
+    log;
+    as;
+    lastVal;
+    mutateEvents;
     subscribe() {
         this.hostToObserve.reactor.subscribe(new Set([this.observeProp]), rs => {
             const currentVal = this.hostToObserve[this.observeProp];
@@ -34,8 +45,7 @@ export class ProxyProp extends HTMLElement {
         this.reactor.addToQueue(propDef, nv);
     }
 }
-ProxyProp.is = 'proxy-prop';
-const onFromRootNodeHost = ({ fromHost: fromRootNodeHost, self }) => {
+const onFromRootNodeHost = ({ fromHost, self }) => {
     const rn = self.getRootNode();
     if (rn !== undefined) {
         self.hostToObserve = rn.host;
@@ -122,6 +132,6 @@ const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(ProxyProp, slicedPropDefs, 'onPropChange');
 xc.define(ProxyProp);
 class PP extends ProxyProp {
+    static is = 'p-p';
 }
-PP.is = 'p-p';
 xc.define(PP);

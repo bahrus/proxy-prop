@@ -28,7 +28,7 @@
     "mut-obs": "0.0.8",
     "on-to-me": "0.0.23",
     "pass-down": "0.0.35",
-    "xtal-element": "0.0.400"
+    "xtal-element": "0.0.401"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",

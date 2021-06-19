@@ -19,7 +19,7 @@ Use case I:
 
 ## Supported attributes:
 
-from-root-node-host
+from-host
 from-closest
 from-upsearch
 
