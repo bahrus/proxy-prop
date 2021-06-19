@@ -46,7 +46,7 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPro
         (<ReactiveSurface>this.hostToObserve!).reactor!.subscribe(new Set([this.observeProp!]), rs => {
             const currentVal = (<any>this.hostToObserve!)[this.observeProp!];
             setVal(this, currentVal);
-        })
+        });
     }
 
     connectedCallback(){
