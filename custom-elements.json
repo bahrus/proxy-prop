@@ -12,6 +12,76 @@
           "name": "ProxyProp",
           "members": [
             {
+              "kind": "field",
+              "name": "is",
+              "static": true,
+              "default": "proxy-prop"
+            },
+            {
+              "kind": "field",
+              "name": "propActions"
+            },
+            {
+              "kind": "field",
+              "name": "self"
+            },
+            {
+              "kind": "field",
+              "name": "reactor"
+            },
+            {
+              "kind": "field",
+              "name": "fromHost"
+            },
+            {
+              "kind": "field",
+              "name": "hostToObserve"
+            },
+            {
+              "kind": "field",
+              "name": "observeProp"
+            },
+            {
+              "kind": "field",
+              "name": "to"
+            },
+            {
+              "kind": "field",
+              "name": "from"
+            },
+            {
+              "kind": "field",
+              "name": "careOf"
+            },
+            {
+              "kind": "field",
+              "name": "prop"
+            },
+            {
+              "kind": "field",
+              "name": "m"
+            },
+            {
+              "kind": "field",
+              "name": "debug"
+            },
+            {
+              "kind": "field",
+              "name": "log"
+            },
+            {
+              "kind": "field",
+              "name": "as"
+            },
+            {
+              "kind": "field",
+              "name": "lastVal"
+            },
+            {
+              "kind": "field",
+              "name": "mutateEvents"
+            },
+            {
               "kind": "method",
               "name": "subscribe"
             },
