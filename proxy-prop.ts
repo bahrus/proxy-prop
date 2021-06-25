@@ -18,6 +18,8 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPro
 
     fromHost: boolean | undefined;
 
+    fromUpsearch: string | undefined;
+
     hostToObserve: Element | undefined;
 
     observeProp: string | undefined;
@@ -25,6 +27,7 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPro
     to: string | undefined;
 
     from: string | undefined;
+
 
     careOf: string | undefined;
 
@@ -64,12 +67,28 @@ export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPro
     }
 }
 
+export function upSearch(el: Element, css: string){
+    if(css === 'parentElement') return el.parentElement;
+    let upEl = el.previousElementSibling || el.parentElement;
+    while(upEl && !upEl.matches(css)){
+        upEl = upEl.previousElementSibling || upEl.parentElement;
+    }
+    return upEl;
+}
+
 type P = ProxyProp;
 
 const onFromRootNodeHost = ({fromHost, self}: P) => {
     const rn = self.getRootNode();
     if(rn !== undefined){
         self.hostToObserve = (<any>rn).host as HTMLElement;
+    }
+};
+
+const onUpSearch = ({fromUpsearch, self}: P) => {
+    const up = upSearch(self, fromUpsearch!);
+    if(up !== null){
+        self.hostToObserve = up;
     }
 };
 
@@ -140,6 +159,7 @@ const numProp1: PropDef = {
 };
 const propDefMap: PropDefMap<P> = {
     fromHost: boolProp2,
+    fromUpsearch: strProp2,
     to: strProp1,
     careOf: strProp1,
     from: strProp1,

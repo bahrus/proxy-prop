@@ -13,6 +13,7 @@ export class ProxyProp extends HTMLElement {
     self = this;
     reactor = new xc.Rx(this);
     fromHost;
+    fromUpsearch;
     hostToObserve;
     observeProp;
     to;
@@ -45,10 +46,25 @@ export class ProxyProp extends HTMLElement {
         this.reactor.addToQueue(propDef, nv);
     }
 }
+export function upSearch(el, css) {
+    if (css === 'parentElement')
+        return el.parentElement;
+    let upEl = el.previousElementSibling || el.parentElement;
+    while (upEl && !upEl.matches(css)) {
+        upEl = upEl.previousElementSibling || upEl.parentElement;
+    }
+    return upEl;
+}
 const onFromRootNodeHost = ({ fromHost, self }) => {
     const rn = self.getRootNode();
     if (rn !== undefined) {
         self.hostToObserve = rn.host;
+    }
+};
+const onUpSearch = ({ fromUpsearch, self }) => {
+    const up = upSearch(self, fromUpsearch);
+    if (up !== null) {
+        self.hostToObserve = up;
     }
 };
 function setVal(self, currentVal) {
@@ -115,6 +131,7 @@ const numProp1 = {
 };
 const propDefMap = {
     fromHost: boolProp2,
+    fromUpsearch: strProp2,
     to: strProp1,
     careOf: strProp1,
     from: strProp1,
