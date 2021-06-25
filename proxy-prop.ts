@@ -85,7 +85,7 @@ const onFromRootNodeHost = ({fromHost, self}: P) => {
     }
 };
 
-const onUpSearch = ({fromUpsearch, self}: P) => {
+const onUpsearch = ({fromUpsearch, self}: P) => {
     const up = upSearch(self, fromUpsearch!);
     if(up !== null){
         self.hostToObserve = up;
@@ -113,7 +113,7 @@ const onLastVal = ({lastVal, to: echoTo, careOf, from, prop, as,  self}: P) => {
 };
 
 const propActions = [
-    onFromRootNodeHost, onHostToObserve, onLastVal
+    onFromRootNodeHost, onHostToObserve, onLastVal, onUpsearch
 ] as PropAction[];
 
 const baseProp: PropDef = {

@@ -61,7 +61,7 @@ const onFromRootNodeHost = ({ fromHost, self }) => {
         self.hostToObserve = rn.host;
     }
 };
-const onUpSearch = ({ fromUpsearch, self }) => {
+const onUpsearch = ({ fromUpsearch, self }) => {
     const up = upSearch(self, fromUpsearch);
     if (up !== null) {
         self.hostToObserve = up;
@@ -86,7 +86,7 @@ const onLastVal = ({ lastVal, to: echoTo, careOf, from, prop, as, self }) => {
     passVal(lastVal, self, echoTo, careOf, self.m, from, prop, as);
 };
 const propActions = [
-    onFromRootNodeHost, onHostToObserve, onLastVal
+    onFromRootNodeHost, onHostToObserve, onLastVal, onUpsearch
 ];
 const baseProp = {
     dry: true,
