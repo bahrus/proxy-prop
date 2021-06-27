@@ -23,6 +23,11 @@
             },
             {
               "kind": "field",
+              "name": "fromParentOrHost",
+              "description": "Observe property fro parent element if available, otherwise from host."
+            },
+            {
+              "kind": "field",
               "name": "fromUpsearch",
               "description": "Search up the DOM Node Tree for an element matching this css selector"
             },
@@ -170,6 +175,11 @@
               "fieldName": "fromParent"
             },
             {
+              "name": "from-parent-or-host",
+              "description": "Observe property fro parent element if available, otherwise from host.",
+              "fieldName": "fromParentOrHost"
+            },
+            {
               "name": "from-upsearch",
               "description": "Search up the DOM Node Tree for an element matching this css selector",
               "fieldName": "fromUpsearch"
@@ -262,6 +272,14 @@
                 "text": "boolean | undefined"
               },
               "description": "Observe property from parent element"
+            },
+            {
+              "kind": "field",
+              "name": "fromParentOrHost",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Observe property fro parent element if available, otherwise from host."
             },
             {
               "kind": "field",
@@ -449,6 +467,14 @@
               },
               "description": "Observe property from parent element",
               "fieldName": "fromParent"
+            },
+            {
+              "name": "from-parent-or-host",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Observe property fro parent element if available, otherwise from host.",
+              "fieldName": "fromParentOrHost"
             },
             {
               "name": "from-upsearch",

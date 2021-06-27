@@ -13,6 +13,11 @@ export class ProxyPropDoc extends ProxyProp {
      */
     fromParent;
     /**
+     * Observe property fro parent element if available, otherwise from host.
+     * @attr from-parent-or-host
+     */
+    fromParentOrHost;
+    /**
      * Search up the DOM Node Tree for an element matching this css selector
      * @attr from-upsearch
      */

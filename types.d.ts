@@ -12,6 +12,11 @@ export interface IProxyPropProps extends PDToFrom {
      */
     fromParent?: boolean,
     /**
+     * Observe property fro parent element if available, otherwise from host.
+     * @attr from-parent-or-host
+     */
+    fromParentOrHost?: boolean,
+    /**
      * Search up the DOM Node Tree for an element matching this css selector
      * @attr from-upsearch
      */

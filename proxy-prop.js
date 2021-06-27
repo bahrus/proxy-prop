@@ -56,6 +56,18 @@ const onFromParent = ({ fromParent, self }) => {
         self.hostToObserve = parent;
     }
 };
+const onFromParentOrHost = ({ fromParentOrHost, self }) => {
+    const parent = self.parentElement;
+    if (parent !== null) {
+        self.hostToObserve = parent;
+    }
+    else {
+        const rn = self.getRootNode();
+        if (rn !== undefined) {
+            self.hostToObserve = rn.host;
+        }
+    }
+};
 function setVal(self, currentVal) {
     if (currentVal !== undefined) {
         if (typeof currentVal === 'object') {
@@ -75,7 +87,7 @@ const onLastVal = ({ lastVal, to: echoTo, careOf, from, prop, as, self }) => {
     passVal(lastVal, self, echoTo, careOf, self.m, from, prop, as);
 };
 const propActions = [
-    onFromRootNodeHost, onHostToObserve, onLastVal, onFromUpsearch, onFromParent
+    onFromRootNodeHost, onHostToObserve, onLastVal, onFromUpsearch, onFromParent, onFromParentOrHost
 ];
 const baseProp = {
     dry: true,
@@ -122,6 +134,7 @@ const propDefMap = {
     fromHost: boolProp2,
     fromUpsearch: strProp2,
     fromParent: boolProp2,
+    fromParentOrHost: boolProp2,
     to: strProp1,
     careOf: strProp1,
     from: strProp1,
