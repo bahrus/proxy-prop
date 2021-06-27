@@ -4,6 +4,553 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "proxy-prop-doc.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ProxyPropDoc",
+          "members": [
+            {
+              "kind": "field",
+              "name": "fromHost",
+              "description": "Observe property from ShadowRoot Host"
+            },
+            {
+              "kind": "field",
+              "name": "fromParent",
+              "description": "Observe property from parent element"
+            },
+            {
+              "kind": "field",
+              "name": "fromUpsearch",
+              "description": "Search up the DOM Node Tree for an element matching this css selector"
+            },
+            {
+              "kind": "field",
+              "name": "observeProp",
+              "description": "Name of property to observe"
+            },
+            {
+              "kind": "field",
+              "name": "hostToObserve",
+              "description": "Host to observe.  Normally, this is determined internally.\nBut it can be passed in."
+            },
+            {
+              "kind": "field",
+              "name": "to",
+              "description": "css pattern to match for from downstream siblings."
+            },
+            {
+              "kind": "field",
+              "name": "from",
+              "description": "Find the closest ancestor matching this css pattern.\nUse that as the base element to pass down the value from."
+            },
+            {
+              "kind": "field",
+              "name": "lastVal",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "careOf",
+              "description": "CSS Selector to use to select single child within the destination element."
+            },
+            {
+              "kind": "field",
+              "name": "prop",
+              "description": "Name of property to set on matching (downstream) siblings."
+            },
+            {
+              "kind": "field",
+              "name": "as",
+              "description": "Pass value to an attribute"
+            },
+            {
+              "kind": "field",
+              "name": "debug",
+              "description": "Add runtime breakpoints at critical points"
+            },
+            {
+              "kind": "field",
+              "name": "log",
+              "description": "Add console.logs at critical points"
+            },
+            {
+              "kind": "field",
+              "name": "m",
+              "description": "Maximum number of elements to search for"
+            },
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true,
+              "default": "proxy-prop",
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "type": {
+                "text": "IReactor"
+              },
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "subscribe",
+              "parameters": [
+                {
+                  "name": "self",
+                  "type": {
+                    "text": "IProxyPropProps"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "propDef",
+                  "type": {
+                    "text": "PropDef"
+                  }
+                },
+                {
+                  "name": "nv",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "from-parent",
+              "description": "Observe property from parent element",
+              "fieldName": "fromParent"
+            },
+            {
+              "name": "from-upsearch",
+              "description": "Search up the DOM Node Tree for an element matching this css selector",
+              "fieldName": "fromUpsearch"
+            },
+            {
+              "name": "observe-prop",
+              "description": "Name of property to observe",
+              "fieldName": "observeProp"
+            },
+            {
+              "name": "to",
+              "description": "css pattern to match for from downstream siblings.",
+              "fieldName": "to"
+            },
+            {
+              "name": "from",
+              "description": "Find the closest ancestor matching this css pattern.\nUse that as the base element to pass down the value from.",
+              "fieldName": "from"
+            },
+            {
+              "name": "care-of",
+              "description": "CSS Selector to use to select single child within the destination element.",
+              "fieldName": "careOf"
+            },
+            {
+              "name": "prop",
+              "description": "Name of property to set on matching (downstream) siblings.",
+              "fieldName": "prop"
+            },
+            {
+              "name": "as-attr",
+              "description": "Pass value to an attribute",
+              "fieldName": "as"
+            },
+            {
+              "name": "debug",
+              "description": "Add runtime breakpoints at critical points",
+              "fieldName": "debug"
+            },
+            {
+              "name": "log",
+              "description": "Add console.logs at critical points",
+              "fieldName": "log"
+            },
+            {
+              "name": "m",
+              "description": "Maximum number of elements to search for",
+              "fieldName": "m"
+            }
+          ],
+          "superclass": {
+            "name": "ProxyProp"
+          },
+          "tagName": "proxy-prop",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ProxyPropDoc",
+          "declaration": {
+            "name": "ProxyPropDoc",
+            "module": "proxy-prop-doc.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "proxy-prop-doc.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ProxyPropDoc",
+          "members": [
+            {
+              "kind": "field",
+              "name": "fromHost",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Observe property from ShadowRoot Host"
+            },
+            {
+              "kind": "field",
+              "name": "fromParent",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Observe property from parent element"
+            },
+            {
+              "kind": "field",
+              "name": "fromUpsearch",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Search up the DOM Node Tree for an element matching this css selector"
+            },
+            {
+              "kind": "field",
+              "name": "observeProp",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Name of property to observe"
+            },
+            {
+              "kind": "field",
+              "name": "hostToObserve",
+              "type": {
+                "text": "Element | undefined"
+              },
+              "description": "Host to observe.  Normally, this is determined internally.\r\nBut it can be passed in."
+            },
+            {
+              "kind": "field",
+              "name": "to",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "css pattern to match for from downstream siblings."
+            },
+            {
+              "kind": "field",
+              "name": "from",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Find the closest ancestor matching this css pattern.\r\nUse that as the base element to pass down the value from."
+            },
+            {
+              "kind": "field",
+              "name": "lastVal",
+              "type": {
+                "text": "any"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "careOf",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "CSS Selector to use to select single child within the destination element."
+            },
+            {
+              "kind": "field",
+              "name": "prop",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Name of property to set on matching (downstream) siblings."
+            },
+            {
+              "kind": "field",
+              "name": "as",
+              "type": {
+                "text": "asAttr | undefined"
+              },
+              "description": "Pass value to an attribute"
+            },
+            {
+              "kind": "field",
+              "name": "debug",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Add runtime breakpoints at critical points"
+            },
+            {
+              "kind": "field",
+              "name": "log",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Add console.logs at critical points"
+            },
+            {
+              "kind": "field",
+              "name": "m",
+              "type": {
+                "text": "number | undefined"
+              },
+              "description": "Maximum number of elements to search for"
+            },
+            {
+              "kind": "field",
+              "name": "is",
+              "static": true,
+              "default": "proxy-prop",
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "type": {
+                "text": "IReactor"
+              },
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "subscribe",
+              "parameters": [
+                {
+                  "name": "self",
+                  "type": {
+                    "text": "IProxyPropProps"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "propDef",
+                  "type": {
+                    "text": "PropDef"
+                  }
+                },
+                {
+                  "name": "nv",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ProxyProp",
+                "module": "proxy-prop.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "from-parent",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Observe property from parent element",
+              "fieldName": "fromParent"
+            },
+            {
+              "name": "from-upsearch",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Search up the DOM Node Tree for an element matching this css selector",
+              "fieldName": "fromUpsearch"
+            },
+            {
+              "name": "observe-prop",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Name of property to observe",
+              "fieldName": "observeProp"
+            },
+            {
+              "name": "to",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "css pattern to match for from downstream siblings.",
+              "fieldName": "to"
+            },
+            {
+              "name": "from",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Find the closest ancestor matching this css pattern.\r\nUse that as the base element to pass down the value from.",
+              "fieldName": "from"
+            },
+            {
+              "name": "care-of",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "CSS Selector to use to select single child within the destination element.",
+              "fieldName": "careOf"
+            },
+            {
+              "name": "prop",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Name of property to set on matching (downstream) siblings.",
+              "fieldName": "prop"
+            },
+            {
+              "name": "as-attr",
+              "type": {
+                "text": "asAttr | undefined"
+              },
+              "description": "Pass value to an attribute",
+              "fieldName": "as"
+            },
+            {
+              "name": "debug",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Add runtime breakpoints at critical points",
+              "fieldName": "debug"
+            },
+            {
+              "name": "log",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Add console.logs at critical points",
+              "fieldName": "log"
+            },
+            {
+              "name": "m",
+              "type": {
+                "text": "number | undefined"
+              },
+              "description": "Maximum number of elements to search for",
+              "fieldName": "m"
+            }
+          ],
+          "superclass": {
+            "name": "ProxyProp"
+          },
+          "tagName": "proxy-prop",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ProxyPropDoc",
+          "declaration": {
+            "name": "ProxyPropDoc",
+            "module": "proxy-prop-doc.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "proxy-prop.js",
       "declarations": [
         {
@@ -30,60 +577,13 @@
               "name": "reactor"
             },
             {
-              "kind": "field",
-              "name": "fromHost"
-            },
-            {
-              "kind": "field",
-              "name": "hostToObserve"
-            },
-            {
-              "kind": "field",
-              "name": "observeProp"
-            },
-            {
-              "kind": "field",
-              "name": "to"
-            },
-            {
-              "kind": "field",
-              "name": "from"
-            },
-            {
-              "kind": "field",
-              "name": "careOf"
-            },
-            {
-              "kind": "field",
-              "name": "prop"
-            },
-            {
-              "kind": "field",
-              "name": "m"
-            },
-            {
-              "kind": "field",
-              "name": "debug"
-            },
-            {
-              "kind": "field",
-              "name": "log"
-            },
-            {
-              "kind": "field",
-              "name": "as"
-            },
-            {
-              "kind": "field",
-              "name": "lastVal"
-            },
-            {
-              "kind": "field",
-              "name": "mutateEvents"
-            },
-            {
               "kind": "method",
-              "name": "subscribe"
+              "name": "subscribe",
+              "parameters": [
+                {
+                  "name": "self"
+                }
+              ]
             },
             {
               "kind": "method",
@@ -104,8 +604,19 @@
           "superclass": {
             "name": "HTMLElement"
           },
-          "tagName": "proxy-prop",
           "customElement": true
+        },
+        {
+          "kind": "function",
+          "name": "upSearch",
+          "parameters": [
+            {
+              "name": "el"
+            },
+            {
+              "name": "css"
+            }
+          ]
         }
       ],
       "exports": [
@@ -114,6 +625,14 @@
           "name": "ProxyProp",
           "declaration": {
             "name": "ProxyProp",
+            "module": "proxy-prop.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "upSearch",
+          "declaration": {
+            "name": "upSearch",
             "module": "proxy-prop.js"
           }
         }
@@ -150,99 +669,16 @@
               }
             },
             {
-              "kind": "field",
-              "name": "fromHost",
-              "type": {
-                "text": "boolean | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "hostToObserve",
-              "type": {
-                "text": "Element | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "observeProp",
-              "type": {
-                "text": "string | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "to",
-              "type": {
-                "text": "string | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "from",
-              "type": {
-                "text": "string | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "careOf",
-              "type": {
-                "text": "string | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "prop",
-              "type": {
-                "text": "string | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "m",
-              "type": {
-                "text": "number | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "debug",
-              "type": {
-                "text": "boolean | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "log",
-              "type": {
-                "text": "boolean | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "as",
-              "type": {
-                "text": "'str-attr' | 'bool-attr' | 'obj-attr' | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "lastVal",
-              "type": {
-                "text": "any"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "mutateEvents",
-              "type": {
-                "text": "string[] | undefined"
-              }
-            },
-            {
               "kind": "method",
-              "name": "subscribe"
+              "name": "subscribe",
+              "parameters": [
+                {
+                  "name": "self",
+                  "type": {
+                    "text": "IProxyPropProps"
+                  }
+                }
+              ]
             },
             {
               "kind": "method",
@@ -272,8 +708,25 @@
           "superclass": {
             "name": "HTMLElement"
           },
-          "tagName": "proxy-prop",
           "customElement": true
+        },
+        {
+          "kind": "function",
+          "name": "upSearch",
+          "parameters": [
+            {
+              "name": "el",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "css",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
         }
       ],
       "exports": [
@@ -282,6 +735,14 @@
           "name": "ProxyProp",
           "declaration": {
             "name": "ProxyProp",
+            "module": "proxy-prop.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "upSearch",
+          "declaration": {
+            "name": "upSearch",
             "module": "proxy-prop.ts"
           }
         }

@@ -4,31 +4,14 @@ import { passVal } from 'on-to-me/on-to-me.js';
 import { addDefaultMutObs } from 'pass-down/pdUtils.js';
 import 'mut-obs/mut-obs.js';
 import { MutObs } from 'mut-obs/mut-obs.js';
-/**
- * @element proxy-prop
- */
 export class ProxyProp extends HTMLElement {
     static is = 'proxy-prop';
     propActions = propActions;
     self = this;
     reactor = new xc.Rx(this);
-    fromHost;
-    fromUpsearch;
-    hostToObserve;
-    observeProp;
-    to;
-    from;
-    careOf;
-    prop;
-    m;
-    debug;
-    log;
-    as;
-    lastVal;
-    mutateEvents;
-    subscribe() {
-        this.hostToObserve.reactor.subscribe(new Set([this.observeProp]), rs => {
-            const currentVal = this.hostToObserve[this.observeProp];
+    subscribe(self) {
+        self.hostToObserve.reactor.subscribe(new Set([self.observeProp]), rs => {
+            const currentVal = self.hostToObserve[self.observeProp];
             setVal(this, currentVal);
         });
     }
@@ -61,10 +44,16 @@ const onFromRootNodeHost = ({ fromHost, self }) => {
         self.hostToObserve = rn.host;
     }
 };
-const onUpsearch = ({ fromUpsearch, self }) => {
+const onFromUpsearch = ({ fromUpsearch, self }) => {
     const up = upSearch(self, fromUpsearch);
     if (up !== null) {
         self.hostToObserve = up;
+    }
+};
+const onFromParent = ({ fromParent, self }) => {
+    const parent = self.parentElement;
+    if (parent !== null) {
+        self.hostToObserve = parent;
     }
 };
 function setVal(self, currentVal) {
@@ -80,13 +69,13 @@ function setVal(self, currentVal) {
 const onHostToObserve = ({ hostToObserve, observeProp, self }) => {
     const currentVal = hostToObserve[observeProp];
     setVal(self, currentVal);
-    self.subscribe();
+    self.subscribe(self);
 };
 const onLastVal = ({ lastVal, to: echoTo, careOf, from, prop, as, self }) => {
     passVal(lastVal, self, echoTo, careOf, self.m, from, prop, as);
 };
 const propActions = [
-    onFromRootNodeHost, onHostToObserve, onLastVal, onUpsearch
+    onFromRootNodeHost, onHostToObserve, onLastVal, onFromUpsearch, onFromParent
 ];
 const baseProp = {
     dry: true,
@@ -132,6 +121,7 @@ const numProp1 = {
 const propDefMap = {
     fromHost: boolProp2,
     fromUpsearch: strProp2,
+    fromParent: boolProp2,
     to: strProp1,
     careOf: strProp1,
     from: strProp1,
@@ -140,7 +130,7 @@ const propDefMap = {
     lastVal: objProp3,
     observeProp: strProp2,
     hostToObserve: objProp2,
-    mutateEvents: objProp4,
+    //mutateEvents: objProp4,
     m: numProp1,
     log: boolProp1,
     debug: boolProp1,

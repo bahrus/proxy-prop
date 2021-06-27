@@ -7,47 +7,16 @@ import  'mut-obs/mut-obs.js';
 import {MutObs} from 'mut-obs/mut-obs.js';
 import {IProxyPropProps} from './types.d.js';
 
-/**
- * @element proxy-prop
- */
+
 export class ProxyProp extends HTMLElement implements ReactiveSurface, IProxyPropProps{
     static is = 'proxy-prop';
     propActions = propActions;
     self =  this;
     reactor: IReactor = new xc.Rx(this);
 
-    fromHost: boolean | undefined;
-
-    fromUpsearch: string | undefined;
-
-    hostToObserve: Element | undefined;
-
-    observeProp: string | undefined;
-
-    to: string | undefined;
-
-    from: string | undefined;
-
-
-    careOf: string | undefined;
-
-    prop: string | undefined;
-
-    m: number | undefined;
-
-    debug: boolean | undefined;
-
-    log: boolean | undefined;
-
-    as: 'str-attr' | 'bool-attr' | 'obj-attr' | undefined;
-
-    lastVal: any;
-
-    mutateEvents: string[] | undefined;
-
-    subscribe(){
-        (<ReactiveSurface>this.hostToObserve!).reactor!.subscribe(new Set([this.observeProp!]), rs => {
-            const currentVal = (<any>this.hostToObserve!)[this.observeProp!];
+    subscribe(self: IProxyPropProps){
+        (<ReactiveSurface>self.hostToObserve!).reactor!.subscribe(new Set([self.observeProp!]), rs => {
+            const currentVal = (<any>self.hostToObserve!)[self.observeProp!];
             setVal(this, currentVal);
         });
     }
@@ -76,7 +45,7 @@ export function upSearch(el: Element, css: string){
     return upEl;
 }
 
-type P = ProxyProp;
+type P = IProxyPropProps;
 
 const onFromRootNodeHost = ({fromHost, self}: P) => {
     const rn = self.getRootNode();
@@ -85,10 +54,17 @@ const onFromRootNodeHost = ({fromHost, self}: P) => {
     }
 };
 
-const onUpsearch = ({fromUpsearch, self}: P) => {
+const onFromUpsearch = ({fromUpsearch, self}: P) => {
     const up = upSearch(self, fromUpsearch!);
     if(up !== null){
         self.hostToObserve = up;
+    }
+};
+
+const onFromParent = ({fromParent, self}: P) => {
+    const parent = self.parentElement;
+    if(parent !== null){
+        self.hostToObserve = parent;
     }
 };
 
@@ -105,7 +81,7 @@ function setVal(self: P, currentVal: any){
 const onHostToObserve = ({hostToObserve, observeProp, self}: P) => {
     const currentVal = (<any>hostToObserve!)[observeProp!];
     setVal(self, currentVal);
-    self.subscribe();
+    self.subscribe(self);
 };
 
 const onLastVal = ({lastVal, to: echoTo, careOf, from, prop, as,  self}: P) => {
@@ -113,7 +89,7 @@ const onLastVal = ({lastVal, to: echoTo, careOf, from, prop, as,  self}: P) => {
 };
 
 const propActions = [
-    onFromRootNodeHost, onHostToObserve, onLastVal, onUpsearch
+    onFromRootNodeHost, onHostToObserve, onLastVal, onFromUpsearch, onFromParent
 ] as PropAction[];
 
 const baseProp: PropDef = {
@@ -160,6 +136,7 @@ const numProp1: PropDef = {
 const propDefMap: PropDefMap<P> = {
     fromHost: boolProp2,
     fromUpsearch: strProp2,
+    fromParent: boolProp2,
     to: strProp1,
     careOf: strProp1,
     from: strProp1,
@@ -168,11 +145,11 @@ const propDefMap: PropDefMap<P> = {
     lastVal: objProp3,
     observeProp: strProp2,
     hostToObserve: objProp2,
-    mutateEvents: objProp4,
+    //mutateEvents: objProp4,
     m: numProp1,
     log: boolProp1,
     debug: boolProp1,
-}
+};
 
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(ProxyProp, slicedPropDefs, 'onPropChange');
