@@ -1,5 +1,7 @@
 # proxy-prop
 
+**NB**:  This package has been renamed / moved to [pass-prop](https://github.com/bahrus/pass-prop).
+
 <a href="https://nodei.co/npm/proxy-prop/"><img src="https://nodei.co/npm/proxy-prop.png"></a>
 
 <img src="https://badgen.net/bundlephobia/minzip/proxy-prop">
